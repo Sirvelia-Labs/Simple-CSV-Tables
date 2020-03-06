@@ -14,7 +14,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Simple CSV Tables
- * Plugin URI:        https://sirvelia.com
+ * Plugin URI:        https://github.com/Sirvelia/Simple-CSV-Tables
  * Description:       Displays html tables from .csv files using a simple shortcode for each table.
  * Version:           1.0.0
  * Author:            Sirvelia
