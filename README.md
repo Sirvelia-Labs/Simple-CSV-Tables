@@ -1,7 +1,7 @@
 === Simple CSV Tables ===
 Contributors: sirvelia
 Donate link: https://sirvelia.com/
-Tags: csv, table, shortcode
+Tags: csv, table, shortcode, datatables
 Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 7.2
