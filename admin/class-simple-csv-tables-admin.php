@@ -5,7 +5,7 @@ use Carbon_Fields\Field;
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
+ * @link       https://sirvelia.com
  * @since      1.0.0
  *
  * @package    Simple_CSV_Tables
@@ -20,7 +20,7 @@ use Carbon_Fields\Field;
  *
  * @package    Simple_CSV_Tables
  * @subpackage Simple_CSV_Tables/admin
- * @author     Your Name <email@example.com>
+ * @author     Sirvelia <info@sirvelia.com>
  */
 class Simple_CSV_Tables_Admin {
 
@@ -63,19 +63,7 @@ class Simple_CSV_Tables_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Simple_CSV_Tables_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Simple_CSV_Tables_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-csv-tables-admin.css', array(), $this->version, 'all' );
+		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-csv-tables-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -86,19 +74,7 @@ class Simple_CSV_Tables_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Simple_CSV_Tables_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Simple_CSV_Tables_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-csv-tables-admin.js', array( 'jquery' ), $this->version, false );
+		//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-csv-tables-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -212,67 +188,6 @@ class Simple_CSV_Tables_Admin {
         break;
     }
 
-	}
-
-
-	/**
-	 * Registers all plugin shortcodes
-	 *
-	 * @since    1.0.0
-	 */
-	public function register_shortcodes(){
-
-  	add_shortcode('show_csv_table', array($this, 'shortcode_csv_tables'));
-
-  }
-
-	/**
-	 * Show CSV Tables shortcode
-	 *
-	 * @since    1.0.0
-	 */
-	public function shortcode_csv_tables($atts) {
-
-		extract( shortcode_atts( array(
-        'id' => 0,
-    ), $atts, 'show_csv_table' ) );
-
-		if($id):
-			$file_id = carbon_get_post_meta( $id, 'csv_file' );
-			$delimiter = carbon_get_post_meta( $id, 'csv_delimiter' );
-			if($file_id):
-				$file_path = get_attached_file( $file_id );
-				if($file_path):
-					$rows = array_map(
-						function($v) use ($delimiter)  { return str_getcsv($v, $delimiter); },
-						file($file_path)
-					);
-
-					ob_start();
-					$header = array_shift($rows); ?>
-					<table class="table">
-        		<tr>
-							<?php foreach($header as $th): ?>
-								<th><?= $th ?></th>
-							<?php endforeach; ?>
-						</tr>
-						<tr>
-							<?php foreach($rows as $row): ?>
-								<tr>
-									<?php foreach($row as $column): ?>
-										<td><?= $column ?></td>
-									<?php endforeach; ?>
-								</tr>
-							<?php endforeach; ?>
-						</tr>
-					</table>
-					<?php return ob_get_clean();
-				endif;
-				return '<p>CSV table not found.</p>';
-			endif;
-		endif;
-
-		return '<p>Please provide a valid CSV table ID</p>';
 	}
 
 }

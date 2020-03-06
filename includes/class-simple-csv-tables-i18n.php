@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://example.com
+ * @link       https://sirvelia.com
  * @since      1.0.0
  *
  * @package    Simple_CSV_Tables
@@ -22,7 +22,7 @@
  * @since      1.0.0
  * @package    Simple_CSV_Tables
  * @subpackage Simple_CSV_Tables/includes
- * @author     Your Name <email@example.com>
+ * @author     Sirvelia <info@sirvelia.com>
  */
 class Simple_CSV_Tables_i18n {
 

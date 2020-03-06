@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://example.com
+ * @link       https://sirvelia.com
  * @since      1.0.0
  *
  * @package    Simple_CSV_Tables
@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Simple_CSV_Tables
  * @subpackage Simple_CSV_Tables/includes
- * @author     Your Name <email@example.com>
+ * @author     Sirvelia <info@sirvelia.com>
  */
 class Simple_CSV_Tables {
 
@@ -159,11 +159,9 @@ class Simple_CSV_Tables {
 		$this->loader->add_action( 'carbon_fields_register_fields', $plugin_admin, 'create_fields' );
 		$this->loader->add_filter( 'manage_csv-table_posts_columns', $plugin_admin, 'set_csv_admin_columns' );
 		$this->loader->add_action( 'manage_csv-table_posts_custom_column', $plugin_admin, 'add_csv_admin_columns_data', 10, 2 );
-		$this->loader->add_action( 'init', $plugin_admin, 'register_shortcodes');
 
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 	}
 
@@ -180,6 +178,7 @@ class Simple_CSV_Tables {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes');
 
 	}
 

@@ -5,7 +5,7 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       http://example.com
+ * @link       https://sirvelia.com
  * @since      1.0.0
  *
  * @package    Simple_CSV_Tables

@@ -3,7 +3,7 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://example.com
+ * @link       https://sirvelia.com
  * @since      1.0.0
  *
  * @package    Simple_CSV_Tables
@@ -19,7 +19,7 @@
  *
  * @package    Simple_CSV_Tables
  * @subpackage Simple_CSV_Tables/includes
- * @author     Your Name <email@example.com>
+ * @author     Sirvelia <info@sirvelia.com>
  */
 class Simple_CSV_Tables_Loader {
 
