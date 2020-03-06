@@ -20,7 +20,8 @@ With Simple CSV Tables you will be able to register unlimited CSV files. Those f
 This plugins creates a Custom Post called 'CSV Table', so we recommend updating the permalinks after activation.
  
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-2. Update permalinks under 'Settings'.
+2. Activate the plugin
+3. Update permalinks under 'Settings'.
  
 == Frequently Asked Questions ==
  
