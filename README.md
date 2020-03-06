@@ -27,13 +27,13 @@ This plugins creates a Custom Post called 'CSV Table', so we recommend updating 
 
 ## Frequently Asked Questions
  
-= A question that someone might have =
+A question that someone might have
  
 An answer to that question.
  
  
  
-## Changelog ==
+## Changelog
  
-= 1.0 =
+ 1.0
 * Initial
