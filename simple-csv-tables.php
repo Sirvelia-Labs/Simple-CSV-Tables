@@ -16,7 +16,7 @@
  * Plugin Name:       Simple CSV Tables
  * Plugin URI:        https://sirvelia.com
  * Description:       Displays html tables from .csv files using a simple shortcode for each table.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Sirvelia
  * Author URI:        https://sirvelia.com
  * License:           GPL-3
@@ -33,9 +33,9 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
+ *
  */
-define( 'SIMPLE_CSV_TABLES_VERSION', '1.0.0' );
+define( 'SIMPLE_CSV_TABLES_VERSION', '1.0.1' );
 define( 'SIMPLE_CSV_TABLES_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
@@ -67,10 +67,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-simple-csv-tables.php';
 
 /**
  * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
  *
  * @since    1.0.0
  */

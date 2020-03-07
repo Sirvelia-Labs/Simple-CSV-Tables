@@ -152,15 +152,18 @@ class Simple_CSV_Tables_Admin {
 	 */
 	function show_shortcode() {
 
-		if(isset($_GET['post'])):
-	    $post_id = $_GET['post'];
-			return '
-	    <div class="cf-field__head">
-	      <label class="cf-field__label" style="display: block">
-	        Shortcode
-	      </label>
-	    </div><p>[show_csv_table id=' . $post_id .']</p>';
+		if( isset($_GET['post']) ):
+	    $post_id = sanitize_text_field( $_GET['post'] );
+			if( is_numeric($post_id) ):
+				return '
+		    <div class="cf-field__head">
+		      <label class="cf-field__label" style="display: block">
+		        Shortcode
+		      </label>
+		    </div><p>[show_csv_table id=' . $post_id .']</p>';
+			endif;
 		endif;
+
 		return '';
 
 	}

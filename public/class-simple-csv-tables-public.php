@@ -62,7 +62,7 @@ class Simple_CSV_Tables_Public {
 	public function enqueue_styles() {
 
 		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-csv-tables-public.css', array(), $this->version, 'all' );
-		wp_register_style( 'datatables-css', '//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
+		wp_register_style( 'datatables-css', plugin_dir_url( __FILE__ ) . 'css/datatables.min.css', array(), $this->version, 'all' );
 
 	}
 
@@ -74,7 +74,7 @@ class Simple_CSV_Tables_Public {
 	public function enqueue_scripts() {
 
 		wp_register_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-csv-tables-public.js', array( 'jquery' ), $this->version, false );
-		wp_register_script( 'datatables-js', '//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'datatables-js', plugin_dir_url( __FILE__ ) . 'js/datatables.min.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -100,9 +100,10 @@ class Simple_CSV_Tables_Public {
         'id' => 0,
     ), $atts, 'show_csv_table' ) );
 
-		if($id):
+		if( $id && is_numeric($id) ):
 			$file_id = carbon_get_post_meta( $id, 'csv_file' );
 			$delimiter = carbon_get_post_meta( $id, 'csv_delimiter' );
+			if(!$delimiter) $delimiter = ',';
 			if($file_id):
 				$file_path = get_attached_file( $file_id );
 				if($file_path):
@@ -121,7 +122,7 @@ class Simple_CSV_Tables_Public {
 						<thead>
 	        		<tr>
 								<?php foreach($header as $th): ?>
-									<th><?= $th ?></th>
+									<th><?= esc_html( $th ) ?></th>
 								<?php endforeach; ?>
 							</tr>
 						</thead>
@@ -129,7 +130,7 @@ class Simple_CSV_Tables_Public {
 							<?php foreach($rows as $row): ?>
 								<tr>
 									<?php foreach($row as $column): ?>
-										<td><?= $column ?></td>
+										<td><?= esc_html( $column ) ?></td>
 									<?php endforeach; ?>
 								</tr>
 							<?php endforeach; ?>
