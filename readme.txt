@@ -31,6 +31,10 @@ An answer to that question.
  
  
 == Changelog ==
- 
+
+= 1.0.1 =
+* Input sanitization && validation
+* Local version of datatables instead of using CDN
+
 = 1.0 =
 * Initial
