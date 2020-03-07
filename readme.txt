@@ -13,7 +13,7 @@ Register and Generate tables from .csv files with a shortcode.
 
 == Description ==
 
-With Simple CSV Tables you will be able to register unlimited CSV files. Those files will be associated to a shortcode taht prints a dynamic table anywhere.
+With Simple CSV Tables you will be able to register unlimited CSV files. Those files will be associated to a shortcode that prints a dynamic table anywhere.
  
 == Installation ==
  
