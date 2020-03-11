@@ -153,8 +153,8 @@ class Simple_CSV_Tables_Admin {
 	function show_shortcode() {
 
 		if( isset($_GET['post']) ):
-	    $post_id = sanitize_text_field( $_GET['post'] );
-			if( is_numeric($post_id) ):
+	    $post_id = intval( $_GET['post'] );
+			if( is_int($post_id) ):
 				return '
 		    <div class="cf-field__head">
 		      <label class="cf-field__label" style="display: block">
