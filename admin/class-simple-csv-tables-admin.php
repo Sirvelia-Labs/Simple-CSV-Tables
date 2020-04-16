@@ -129,16 +129,16 @@ class Simple_CSV_Tables_Admin {
 	 */
 	public function create_fields() {
 
-		Container::make( 'post_meta', __( 'Import file' ) )
+		Container::make( 'post_meta', __( 'Import file', 'simple-csv-tables' ) )
 				->where( 'post_type', '=', 'csv-table' )
         ->add_fields( array(
-					Field::make( 'file', 'csv_file', __( 'CSV file' ) )
+					Field::make( 'file', 'csv_file', __( 'CSV file', 'simple-csv-tables' ) )
 						->set_type( array( 'text/csv' ) )
 						->set_width( 33 ),
-					Field::make( 'text', 'csv_delimiter', __( 'CSV delimiter' ) )
+					Field::make( 'text', 'csv_delimiter', __( 'CSV delimiter', 'simple-csv-tables' ) )
 						->set_default_value( ',' )
 						->set_width( 33 ),
-					Field::make( 'html', 'csv_shortcode', __( 'Shortcode' ) )
+					Field::make( 'html', 'csv_shortcode', __( 'Shortcode', 'simple-csv-tables' ) )
 						->set_html( array($this, 'show_shortcode') )
 						->set_width( 34 )
         ) );
@@ -158,7 +158,7 @@ class Simple_CSV_Tables_Admin {
 				return '
 		    <div class="cf-field__head">
 		      <label class="cf-field__label" style="display: block">
-		        Shortcode
+		        '. __( 'Shortcode', 'simple-csv-tables' ) .'
 		      </label>
 		    </div><p>[show_csv_table id=' . $post_id .']</p>';
 			endif;

@@ -16,7 +16,7 @@
  * Plugin Name:       Simple CSV Tables
  * Plugin URI:        https://github.com/Sirvelia/Simple-CSV-Tables
  * Description:       Displays html tables from .csv files using a simple shortcode for each table.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Sirvelia
  * Author URI:        https://sirvelia.com
  * License:           GPL-3
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  *
  */
-define( 'SIMPLE_CSV_TABLES_VERSION', '1.0.1' );
+define( 'SIMPLE_CSV_TABLES_VERSION', '1.0.2' );
 define( 'SIMPLE_CSV_TABLES_PATH', plugin_dir_path( __FILE__ ) );
 
 /**

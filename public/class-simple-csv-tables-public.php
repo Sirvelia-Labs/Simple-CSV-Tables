@@ -138,11 +138,11 @@ class Simple_CSV_Tables_Public {
 					</table>
 					<?php return ob_get_clean();
 				endif;
-				return '<p>CSV table not found.</p>';
+				return '<p>' . __( 'CSV table not found', 'simple-csv-tables' ) . '</p>';
 			endif;
 		endif;
 
-		return '<p>Please provide a valid CSV table ID</p>';
+		return '<p>' . __( 'Please provide a valid CSV table ID', 'simple_csv_tables' ) . '</p>';
 	}
 
 }
