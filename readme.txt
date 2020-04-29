@@ -29,6 +29,12 @@ This plugins creates a Custom Post called 'CSV Table', so we recommend updating 
 
 An answer to that question.
 
+== Screenshots ==
+ 
+1. You can create a New CSV Table, upload the .csv file, and specify the delimeter char.
+2. A shortcode will be generated.
+3. Use the sortcode to print the table on Posts and Pages.
+4. The table is shown.
 
 == Changelog ==
 
