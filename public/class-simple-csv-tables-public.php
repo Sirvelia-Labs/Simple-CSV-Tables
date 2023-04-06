@@ -20,7 +20,8 @@
  * @subpackage Simple_CSV_Tables/public
  * @author     Sirvelia <info@sirvelia.com>
  */
-class Simple_CSV_Tables_Public {
+class Simple_CSV_Tables_Public
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,10 @@ class Simple_CSV_Tables_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
-
+	public function __construct($plugin_name, $version)
+	{
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,11 +59,9 @@ class Simple_CSV_Tables_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
-
-		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-csv-tables-public.css', array(), $this->version, 'all' );
-		wp_register_style( 'datatables-css', plugin_dir_url( __FILE__ ) . 'css/datatables.min.css', array(), $this->version, 'all' );
-
+	public function enqueue_styles()
+	{
+		wp_register_style('datatables-css', plugin_dir_url(__FILE__) . 'css/datatables.min.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -71,11 +69,10 @@ class Simple_CSV_Tables_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
-
-		wp_register_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-csv-tables-public.js', array( 'jquery' ), $this->version, false );
-		wp_register_script( 'datatables-js', plugin_dir_url( __FILE__ ) . 'js/datatables.min.js', array( 'jquery' ), $this->version, false );
-
+	public function enqueue_scripts()
+	{
+		wp_register_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/simple-csv-tables-public.js', array('jquery'), $this->version, false);
+		wp_register_script('datatables-js', plugin_dir_url(__FILE__) . 'js/datatables.min.js', array('jquery'), $this->version, false);
 	}
 
 	/**
@@ -83,66 +80,66 @@ class Simple_CSV_Tables_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function register_shortcodes(){
-
-  	add_shortcode('show_csv_table', array($this, 'shortcode_csv_tables'));
-
-  }
+	public function register_shortcodes()
+	{
+		add_shortcode('show_csv_table', array($this, 'shortcode_csv_tables'));
+	}
 
 	/**
 	 * Show CSV Tables shortcode
 	 *
 	 * @since    1.0.0
 	 */
-	public function shortcode_csv_tables($atts) {
+	public function shortcode_csv_tables($atts)
+	{
+		extract(shortcode_atts(array(
+			'id' => 0,
+		), $atts, 'show_csv_table'));
 
-		extract( shortcode_atts( array(
-        'id' => 0,
-    ), $atts, 'show_csv_table' ) );
-
-		if( $id && is_numeric($id) ):
-			$file_id = carbon_get_post_meta( $id, 'csv_file' );
-			$delimiter = carbon_get_post_meta( $id, 'csv_delimiter' );
-			if(!$delimiter) $delimiter = ',';
-			if($file_id):
-				$file_path = get_attached_file( $file_id );
-				if($file_path):
+		if ($id && is_numeric($id)) :
+			$file_id = carbon_get_post_meta($id, 'csv_file');
+			$delimiter = carbon_get_post_meta($id, 'csv_delimiter');
+			if (!$delimiter) $delimiter = ',';
+			if ($file_id) :
+				$file_path = get_attached_file($file_id);
+				if ($file_path) :
 					$rows = array_map(
-						function($v) use ($delimiter)  { return str_getcsv($v, $delimiter); },
+						function ($v) use ($delimiter) {
+							return str_getcsv($v, $delimiter);
+						},
 						file($file_path)
 					);
 
 					ob_start();
-					if( !wp_script_is('datatables-js') ) wp_enqueue_script( 'datatables-js' );
-					if( !wp_script_is($this->plugin_name) ) wp_enqueue_script( $this->plugin_name );
-					if( !wp_style_is('datatables-css') ) wp_enqueue_style( 'datatables-css' );
+					if (!wp_script_is('datatables-js')) wp_enqueue_script('datatables-js');
+					if (!wp_script_is($this->plugin_name)) wp_enqueue_script($this->plugin_name);
+					if (!wp_style_is('datatables-css')) wp_enqueue_style('datatables-css');
 
 					$header = array_shift($rows); ?>
 					<table class="simple_csv_table">
 						<thead>
-	        		<tr>
-								<?php foreach($header as $th): ?>
-									<th><?= esc_html( $th ) ?></th>
+							<tr>
+								<?php foreach ($header as $th) : ?>
+									<th><?= esc_html($th) ?></th>
 								<?php endforeach; ?>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($rows as $row): ?>
+							<?php foreach ($rows as $row) : ?>
 								<tr>
-									<?php foreach($row as $column): ?>
-										<td><?= esc_html( $column ) ?></td>
+									<?php foreach ($row as $column) : ?>
+										<td><?= esc_html($column) ?></td>
 									<?php endforeach; ?>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
 					</table>
-					<?php return ob_get_clean();
+<?php return ob_get_clean();
 				endif;
-				return '<p>' . __( 'CSV table not found', 'simple-csv-tables' ) . '</p>';
+				return '<p>' . __('CSV table not found', 'simple-csv-tables') . '</p>';
 			endif;
 		endif;
 
-		return '<p>' . __( 'Please provide a valid CSV table ID', 'simple_csv_tables' ) . '</p>';
+		return '<p>' . __('Please provide a valid CSV table ID', 'simple_csv_tables') . '</p>';
 	}
-
 }

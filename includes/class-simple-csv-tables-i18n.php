@@ -24,7 +24,8 @@
  * @subpackage Simple_CSV_Tables/includes
  * @author     Sirvelia <info@sirvelia.com>
  */
-class Simple_CSV_Tables_i18n {
+class Simple_CSV_Tables_i18n
+{
 
 
 	/**
@@ -32,16 +33,13 @@ class Simple_CSV_Tables_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
+	public function load_plugin_textdomain()
+	{
 
 		load_plugin_textdomain(
 			'simple-csv-tables',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
-
 	}
-
-
-
 }

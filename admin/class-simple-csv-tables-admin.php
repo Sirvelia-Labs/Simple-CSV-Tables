@@ -1,4 +1,5 @@
 <?php
+
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
@@ -22,7 +23,8 @@ use Carbon_Fields\Field;
  * @subpackage Simple_CSV_Tables/admin
  * @author     Sirvelia <info@sirvelia.com>
  */
-class Simple_CSV_Tables_Admin {
+class Simple_CSV_Tables_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -49,51 +51,29 @@ class Simple_CSV_Tables_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
-
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
-
-		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-csv-tables-admin.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
-
-		//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-csv-tables-admin.js', array( 'jquery' ), $this->version, false );
-
-	}
-
 
 	/**
 	 * Registers CSV table Custom Post Type.
 	 *
 	 * @since    1.0.0
 	 */
-	public function create_csv_table_cpt() {
+	public function create_csv_table_cpt()
+	{
 
 		$labels = array(
-			'name'                  => _x( 'CSV tables', 'Post Type General Name', 'simple-csv-tables' ),
-			'singular_name'         => _x( 'CSV table', 'Post Type Singular Name', 'simple-csv-tables' ),
+			'name'                  => _x('CSV tables', 'Post Type General Name', 'simple-csv-tables'),
+			'singular_name'         => _x('CSV table', 'Post Type Singular Name', 'simple-csv-tables'),
 		);
 		$args = array(
-			'label'                 => __( 'CSV table', 'simple-csv-tables' ),
+			'label'                 => __('CSV table', 'simple-csv-tables'),
 			'labels'                => $labels,
-			'supports'              => array( 'title' ),
+			'supports'              => array('title'),
 			'hierarchical'          => false,
 			'public'                => false,
 			'show_ui'               => true,
@@ -108,8 +88,7 @@ class Simple_CSV_Tables_Admin {
 			'publicly_queryable'    => true,
 			'capability_type'       => 'post',
 		);
-		register_post_type( 'csv-table', $args);
-
+		register_post_type('csv-table', $args);
 	}
 
 	/**
@@ -117,9 +96,10 @@ class Simple_CSV_Tables_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_vendor() {
+	public function load_vendor()
+	{
 		require_once SIMPLE_CSV_TABLES_PATH . 'vendor/autoload.php';
-    \Carbon_Fields\Carbon_Fields::boot();
+		\Carbon_Fields\Carbon_Fields::boot();
 	}
 
 	/**
@@ -127,22 +107,22 @@ class Simple_CSV_Tables_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function create_fields() {
+	public function create_fields()
+	{
 
-		Container::make( 'post_meta', __( 'Import file', 'simple-csv-tables' ) )
-				->where( 'post_type', '=', 'csv-table' )
-        ->add_fields( array(
-					Field::make( 'file', 'csv_file', __( 'CSV file', 'simple-csv-tables' ) )
-						->set_type( array( 'text/csv' ) )
-						->set_width( 33 ),
-					Field::make( 'text', 'csv_delimiter', __( 'CSV delimiter', 'simple-csv-tables' ) )
-						->set_default_value( ',' )
-						->set_width( 33 ),
-					Field::make( 'html', 'csv_shortcode', __( 'Shortcode', 'simple-csv-tables' ) )
-						->set_html( array($this, 'show_shortcode') )
-						->set_width( 34 )
-        ) );
-
+		Container::make('post_meta', __('Import file', 'simple-csv-tables'))
+			->where('post_type', '=', 'csv-table')
+			->add_fields(array(
+				Field::make('file', 'csv_file', __('CSV file', 'simple-csv-tables'))
+					->set_type(array('text/csv'))
+					->set_width(33),
+				Field::make('text', 'csv_delimiter', __('CSV delimiter', 'simple-csv-tables'))
+					->set_default_value(',')
+					->set_width(33),
+				Field::make('html', 'csv_shortcode', __('Shortcode', 'simple-csv-tables'))
+					->set_html(array($this, 'show_shortcode'))
+					->set_width(34)
+			));
 	}
 
 	/**
@@ -150,22 +130,22 @@ class Simple_CSV_Tables_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	function show_shortcode() {
+	function show_shortcode()
+	{
 
-		if( isset($_GET['post']) ):
-	    $post_id = intval( $_GET['post'] );
-			if( is_int($post_id) ):
+		if (isset($_GET['post'])) :
+			$post_id = intval($_GET['post']);
+			if (is_int($post_id)) :
 				return '
 		    <div class="cf-field__head">
 		      <label class="cf-field__label" style="display: block">
-		        '. __( 'Shortcode', 'simple-csv-tables' ) .'
+		        ' . __('Shortcode', 'simple-csv-tables') . '
 		      </label>
-		    </div><p>[show_csv_table id=' . $post_id .']</p>';
+		    </div><p>[show_csv_table id=' . $post_id . ']</p>';
 			endif;
 		endif;
 
 		return '';
-
 	}
 
 	/**
@@ -173,9 +153,10 @@ class Simple_CSV_Tables_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function set_csv_admin_columns($columns) {
-	    $columns['csv_shortcode'] = __( 'Shortcode', 'simple-csv-tables' );
-	    return $columns;
+	public function set_csv_admin_columns($columns)
+	{
+		$columns['csv_shortcode'] = __('Shortcode', 'simple-csv-tables');
+		return $columns;
 	}
 
 	/**
@@ -183,14 +164,13 @@ class Simple_CSV_Tables_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function add_csv_admin_columns_data($column, $post_id) {
+	public function add_csv_admin_columns_data($column, $post_id)
+	{
 
-		switch ( $column ) {
-      case 'csv_shortcode' :
-        echo '[show_csv_table id=' . $post_id .']';
-        break;
-    }
-
+		switch ($column) {
+			case 'csv_shortcode':
+				echo '[show_csv_table id=' . $post_id . ']';
+				break;
+		}
 	}
-
 }

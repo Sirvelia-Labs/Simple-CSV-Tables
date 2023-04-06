@@ -20,7 +20,8 @@
  * @subpackage Simple_CSV_Tables/includes
  * @author     Sirvelia <info@sirvelia.com>
  */
-class Simple_CSV_Tables_Activator {
+class Simple_CSV_Tables_Activator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -29,8 +30,7 @@ class Simple_CSV_Tables_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
-
+	public static function activate()
+	{
 	}
-
 }
