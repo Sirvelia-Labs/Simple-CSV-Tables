@@ -1,9 +1,9 @@
 === Simple CSV Tables ===
-Contributors: sirvelia
+Contributors: sirvelia, joanrodas, amadeuarderiu
 Donate link: https://sirvelia.com/
 Tags: csv, table, shortcode, datatables
 Requires at least: 4.0
-Tested up to: 5.4
+Tested up to: 6.2
 Requires PHP: 7.2
 Stable tag: trunk
 License: GPLv2 or later
@@ -17,7 +17,7 @@ With Simple CSV Tables you will be able to register unlimited CSV files. Those f
 
 == Installation ==
 
-This plugins creates a Custom Post called 'CSV Table', so we recommend updating the permalinks after activation.
+This plugin creates a Custom Post called 'CSV Table', so we recommend updating the permalinks after activation.
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory
 2. Activate the plugin
@@ -37,6 +37,9 @@ Absolutely. You can import and show as many tables as you like. Every time you i
 4. The table is shown.
 
 == Changelog ==
+
+= 1.0.3 =
+* Update dependencies & add responsive
 
 = 1.0.2 =
 * Translatable strings
